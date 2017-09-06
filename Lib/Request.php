@@ -2,8 +2,18 @@
 
 class Request {
 
-    public static $params;
-    public static $payload;
+    private static $params = [];
+    private static $payload = [];
+
+    public static function setParams($params) {
+
+        self::$params = $params;
+    }
+
+    public static function setPayload($payload) {
+
+        self::$payload = $payload;
+    }
 
     public static function get($key, $default = null) {
 

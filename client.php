@@ -26,12 +26,11 @@ if (!is_null($action)) {
 }
 
 $switch = POWER;
-$switch_status = boolval(SWITCH_STATUS);
+$switch_status = boolval(SWITCH_STATUS) ? "true" : "false";
 $request = REQUEST;
-// choose log the request & response to disk or not
-// $deal = DEAL . "dealRequest";
-$deal = DEAL . "setRequest";
 $response = RESPONSE;
+$deal = DEAL;
+
 $script = "<title>TPSPS</title>
 <meta name='author' content='Timewander, gf-fly@163.com'>
 <link rel='shortcut icon' type='image/ico' href='/sky.ico'>
