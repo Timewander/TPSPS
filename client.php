@@ -26,7 +26,7 @@ if (!is_null($action)) {
 }
 
 $switch = POWER;
-$switch_status = boolval(SWITCH_STATUS);
+$switch_status = boolval(SWITCH_STATUS) ? "true" : "false";
 $request = REQUEST;
 $response = RESPONSE;
 $deal = DEAL;
