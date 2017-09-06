@@ -42,7 +42,7 @@ class Http {
 
     public static function get($url, $header = []) {
 
-        return self::network($url, $header, "get", "", 10);
+        return self::network($url, self::setHeader($header), "get", "", 10);
     }
 
     public static function post($url, $payload, $header = []) {
