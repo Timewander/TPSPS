@@ -91,6 +91,16 @@ class Http {
         return $result;
     }
 
+    public static function getHeader($header) {
+
+        $result = [];
+        foreach ($header as $line) {
+            list($key, $value) = explode(": ", $line);
+            $result[$key] = $value;
+        }
+        return $result;
+    }
+
     public static function urlencoded($body) {
 
         $params = [];

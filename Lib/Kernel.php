@@ -29,7 +29,7 @@ class Kernel {
         $method = isset($request["method"]) ? $request["method"] : "get";
         $body = $request["body"];
         $url = $request["url"];
-        $header = $request["header"];
+        $header = Http::getHeader($request["header"]);
         switch (strtoupper($method)) {
             case "GET" :
                 $response = Http::get($url, $header);
