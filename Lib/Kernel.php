@@ -30,10 +30,18 @@ class Kernel {
         $body = $request["body"];
         $url = $request["url"];
         $header = $request["header"];
-        if ($method == "get") {
-            $response = Http::get($url, $header);
-        } else {
-            $response = Http::post($url, $body, $header);
+        switch (strtoupper($method)) {
+            case "GET" :
+                $response = Http::get($url, $header);
+                break;
+            case "POST" :
+                $response = Http::post($url, $body, $header);
+                break;
+            case "PUT" :
+                $response = Http::put($url, $body, $header);
+                break;
+            default :
+                $response = Http::call($url, $method, $header);
         }
 
         // deal resource
