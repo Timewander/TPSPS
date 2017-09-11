@@ -18,8 +18,8 @@ class Soap {
             $result = $client->__soapCall($function, [$params]);
         } catch (SoapFault $soapFault) {
             $result = [
-                "message" => $soapFault->getMessage(),
-                "code" => $soapFault->getCode(),
+                "proxy_message" => $soapFault->getMessage(),
+                "proxy_code" => $soapFault->getCode(),
             ];
         }
 
