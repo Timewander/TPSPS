@@ -31,6 +31,9 @@ class Kernel {
         $url = $request["url"];
         $header = Http::getHeader($request["header"]);
         switch (strtoupper($method)) {
+            case "SOAP" :
+                $response = Soap::call($url, $body, $header);
+                break;
             case "GET" :
                 $response = Http::get($url, $header);
                 break;
