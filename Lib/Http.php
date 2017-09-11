@@ -84,6 +84,9 @@ class Http {
 
     private static function setHeader($header) {
 
+        if (!isMap($header)) {
+            return $header;
+        }
         $result = [];
         foreach ($header as $key => $value) {
             $result[] = "$key: $value";
@@ -93,10 +96,13 @@ class Http {
 
     public static function getHeader($header) {
 
+        if (isMap($header)) {
+            return $header;
+        }
         $result = [];
         foreach ($header as $line) {
-            list($key, $value) = explode(": ", $line);
-            $result[$key] = $value;
+            list($key, $value) = explode(":", $line);
+            $result[trim($key)] = trim($value);
         }
         return $result;
     }

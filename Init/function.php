@@ -64,3 +64,16 @@ function isMobile() {
     }
     return false;
 }
+
+function isMap($array) {
+
+    $keys = array_keys($array);
+    $flag = 0;
+    foreach ($keys as $key) {
+        if (!is_numeric($key) || $key != $flag) {
+            return true;
+        }
+        $flag ++;
+    }
+    return false;
+}
