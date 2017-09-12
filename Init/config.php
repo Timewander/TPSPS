@@ -1,6 +1,7 @@
 <?php
 
 define("TMP_DIR", ROOT_DIR . '\..\tmp');
+define("LOG_DIR", ROOT_DIR . '\..\logs');
 define("POWER", "http://proxy-sky.richemont.d1m.cn/proxy/power");
 define("SWITCH_STATUS", false);
 // choose log the request & response to disk or not

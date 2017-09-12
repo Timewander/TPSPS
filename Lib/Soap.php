@@ -15,12 +15,9 @@ class Soap {
             "location" => $location,
         ]);
         try {
-            $result = $client->__soapCall($function, [$params]);
+            $result = $client->__soapCall($function, $params);
         } catch (SoapFault $soapFault) {
-            $result = [
-                "proxy_message" => $soapFault->getMessage(),
-                "proxy_code" => $soapFault->getCode(),
-            ];
+            $result = $soapFault;
         }
 
         return json_encode($result);
