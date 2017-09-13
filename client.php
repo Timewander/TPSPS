@@ -63,12 +63,12 @@ $script = "<title>TPSPS</title>
             }
         })
     }
-    function dealRequest(data, refresh) {
+    function dealRequest(data, need_refresh) {
         $.post('$deal', {data : data}, function(data) {
             if (data != '') {
                 setResponse(JSON.parse(data));
             } else {
-                if (refresh) {
+                if (need_refresh) {
                     refresh();
                 } else {
                     dealRequest(data, true);
