@@ -37,6 +37,7 @@ $script = "<title>TPSPS</title>
 <script src='jquery-3.2.1.min.js'></script>
 <script>
     var status = 'on';
+    var refresh_times = 6000;
     function checkSwitch() {
         $.get('$switch', function(data) {
             status = data;
@@ -45,6 +46,9 @@ $script = "<title>TPSPS</title>
     function refresh() {
         if ($switch_status) {
             checkSwitch();
+        }
+        if (refresh_times -- == 1) {
+            window.location.href = '';
         }
         if (status == 'on') {
             setTimeout('getRequest();', 100);
@@ -81,9 +85,18 @@ $script = "<title>TPSPS</title>
         getRequest();
         window.resizeTo(400, 80);
     });
-</script>";
+</script>
+<style>
+body {
+    background-color: #38B0DE;
+}
+.client {
+    margin: 0 auto;
+    width: 200px;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+}
+</style>
+<div class='client'>Welcome to TPSPS</div>";
 print $script;
-$html = "<body style='background-color: #38B0DE;'>
-<div style='margin: 0 auto;width: 200px;padding: 10px 0;text-align: center;color: white;'>Welcome to TPSPS</div>
-</body>";
-print $html;
