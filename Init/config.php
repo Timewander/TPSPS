@@ -9,4 +9,4 @@ define("SWITCH_STATUS", false);
 define("ACTION", "setRequest");
 define("REQUEST", "http://proxy-sky.richemont.d1m.cn/proxy/request");
 define("RESPONSE", "http://proxy-sky.richemont.d1m.cn/proxy/response");
-define("DEAL", "http://localhost/client.php?action=" . ACTION);
+define("DEAL", "http://localhost?action=" . ACTION);
