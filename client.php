@@ -37,7 +37,7 @@ $script = "<title>TPSPS</title>
 <script src='jquery-3.2.1.min.js'></script>
 <script>
     var status = 'on';
-    var refresh_times = 6000;
+    var refresh_times = 600;
     function checkSwitch() {
         $.get('$switch', function(data) {
             status = data;
@@ -47,7 +47,7 @@ $script = "<title>TPSPS</title>
         if ($switch_status) {
             checkSwitch();
         }
-        if (refresh_times -- == 1) {
+        if (refresh_times -- <= 1) {
             window.location.href = '';
         }
         if (status == 'on') {
