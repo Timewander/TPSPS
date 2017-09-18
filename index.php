@@ -18,11 +18,10 @@ if (!is_null($action)) {
         default :
             die;
     }
-    echo json_encode([
+    Response::build([
         "key" => $key,
         "data" => $response
-    ]);
-    die;
+    ], 200);
 }
 
 $switch = POWER;
@@ -48,37 +47,54 @@ $script = "<title>TPSPS</title>
             checkSwitch();
         }
         if (refresh_times -- <= 1) {
+            console.clear();
             window.location.href = '';
-        }
-        if (status == 'on') {
+        } else if (status == 'on') {
             setTimeout('getRequest();', 100);
         }
     }
     function getRequest() {
-        $.get('$request', function(data) {
-            if (data != '') {
+        $.ajax({
+            'url' : '$request',
+            'type' : 'GET',
+            'timeout' : 10000,
+            'success' : function(data) {
                 dealRequest(data, false);
-            } else {
+            },
+            'error' : function() {
                 refresh();
             }
-        })
+        });
     }
     function dealRequest(data, need_refresh) {
-        $.post('$deal', {data : data}, function(data) {
-            if (data != '') {
-                setResponse(JSON.parse(data));
-            } else {
+        $.ajax({
+            'url' : '$deal',
+            'type' : 'POST',
+            'timeout' : 20000,
+            'data' : {
+                data : data
+            },
+            'success' : function(data) {
+                setResponse(data);
+            },
+            'error' : function() {
                 if (need_refresh) {
                     refresh();
                 } else {
                     dealRequest(data, true);
                 }
             }
-        })
+        });
     }
     function setResponse(data) {
-        $.post('$response', data, function() {
-            refresh();
+        $.ajax({
+            'url' : '$response',
+            'type' : 'POST',
+            'timeout' : 30000,
+            'data' : data,
+            'complete' : function() {
+                refresh();
+            }
         });
     }
     $(function() {

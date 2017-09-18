@@ -39,9 +39,9 @@ class Request {
 
         $param = self::post($key);
         $array = !is_null($param) ? json_decode($param, true) : [];
-        if (is_array($array) && !empty($array)) {
-            return $array;
+        if (!is_array($array) || empty($array)) {
+            Response::build("", 400);
         }
-        die;
+        return $array;
     }
 }
