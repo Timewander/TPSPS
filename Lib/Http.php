@@ -82,7 +82,7 @@ class Http {
         return [$payload, $header];
     }
 
-    private static function setHeader($header) {
+    public static function setHeader($header) {
 
         if (!isMap($header)) {
             return $header;
